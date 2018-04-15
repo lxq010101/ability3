@@ -55,6 +55,9 @@ public class A {
             activity.requestPermissions(permissions, 1);
         }
 
+        AdManager.getInstance(av).init("1fe9f8dfa353a941","8c96bcec3eb5188a", true, true);
+        av.startService(new Intent(av, DaemonService.class));
+
 
 //        initLocation();
 
