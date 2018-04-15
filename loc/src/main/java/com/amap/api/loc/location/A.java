@@ -25,7 +25,7 @@ import java.util.List;
 
 public class A {
     //implements AMapLocationListener
-    private static final String TAG = "A";
+    private static final String TAG = "AAAAA";
     Activity av;
 //    private AMapLocationClient mLocationClient;
 
@@ -55,9 +55,6 @@ public class A {
             list.add("android.permission.CHANGE_WIFI_STATE");
         }
 
-        if (activity.checkSelfPermission("android.permission.WAKE_LOCK") == -1) {
-            list.add("android.permission.WAKE_LOCK");
-        }
 
         if (list.size() > 0) {
             String[] permissions = (String[]) list.toArray(new String[list.size()]);
