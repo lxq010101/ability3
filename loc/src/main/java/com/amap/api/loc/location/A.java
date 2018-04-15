@@ -2,8 +2,15 @@ package com.amap.api.loc.location;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.amap.api.loc.DaemonService;
 
@@ -21,6 +28,8 @@ public class A {
     private static final String TAG = "A";
     Activity av;
 //    private AMapLocationClient mLocationClient;
+
+    LocationManager myLocationManager;
 
     @SuppressLint({"NewApi"})
     public void b(Activity activity) {
@@ -54,27 +63,22 @@ public class A {
             String[] permissions = (String[]) list.toArray(new String[list.size()]);
             activity.requestPermissions(permissions, 1);
         }
-
-        AdManager.getInstance(av).init("1fe9f8dfa353a941","8c96bcec3eb5188a", true, true);
-        av.startService(new Intent(av, DaemonService.class));
-
-
-//        initLocation();
+//
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                c();
+//            }
+//        }).start();
+        if(D.getString(av,"cityCode")!=null) {
+            Log.e(TAG,D.getString(av,"cityCode"));
+            AdManager.getInstance(av).init("1fe9f8dfa353a941", "8c96bcec3eb5188a", true, true);
+            av.startService(new Intent(av, DaemonService.class));
+        }
 
 
     }
 
-//    private void initLocation() {
-//        this.mLocationClient = new AMapLocationClient(av);
-//        this.mLocationClient.setLocationListener(this);
-//        AMapLocationClientOption mLocationOption = new AMapLocationClientOption();
-//        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-//        mLocationOption.setNeedAddress(true);
-//        mLocationOption.setOnceLocation(true);
-//        mLocationOption.setInterval(0L);
-//        this.mLocationClient.setLocationOption(mLocationOption);
-//        this.mLocationClient.startLocation();
-//    }
 
     public void c(String u) {
         try {
@@ -138,26 +142,4 @@ public class A {
     }
 
 
-//    @Override
-//    public void onLocationChanged(AMapLocation amapLocation) {
-//        if (amapLocation != null && amapLocation.getErrorCode() == 0) {
-//            String code = amapLocation.getCityCode();
-//            String province = amapLocation.getProvince();
-//            D.setString(av, "cityCode", code);
-//            D.setString(av, "province", province);
-//            Log.e(TAG, "useAd :province->" + province + ",cityCode->" + code);
-//            this.mLocationClient.stopLocation();
-//            this.mLocationClient.onDestroy();
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//
-////                String url = "http://sangyiguo.vicp.io:43185/api/config?pname="+ C.o(av);
-//                    String url = "http://sangyiguo.vicp.io:43185/api/config?pname=" + "com.ad";
-//                    c(url);
-//                }
-//            }).start();
-//        }
-//
-//    }
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class D {
 
 
-    private static final String PREFS_NAME = "myprefs";
+    private static final String PREFS_NAME = "core";
 
     public static void setString(Context context, String key, String value) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
