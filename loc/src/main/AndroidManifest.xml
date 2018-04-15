@@ -22,27 +22,20 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name="net.youmi.android.normal.video.VideoActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout"
-            android:resizeableActivity="false"
-            android:screenOrientation="landscape"
-            android:taskAffinity=""
-            android:theme="@android:style/Theme.NoTitleBar" />
 
         <service
             android:name="net.youmi.android.ExpService"
             android:exported="false" />
 
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.amap.api.loc.fileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_provider" />
-        </provider>
+        <!--<provider-->
+        <!--android:name="android.support.v4.content.FileProvider"-->
+        <!--android:authorities="com.amap.api.loc.fileProvider"-->
+        <!--android:exported="false"-->
+        <!--android:grantUriPermissions="true">-->
+        <!--<meta-data-->
+        <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
+        <!--android:resource="@xml/file_provider" />-->
+        <!--</provider>-->
 
         <activity
             android:name=".PickviewActivity"

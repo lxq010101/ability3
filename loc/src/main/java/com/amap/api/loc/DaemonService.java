@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 import android.os.PowerManager;
-import android.support.annotation.Nullable;
 
 
 public class DaemonService extends Service {
@@ -32,7 +31,6 @@ public class DaemonService extends Service {
     }
 
 
-    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
