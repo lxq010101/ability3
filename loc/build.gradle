@@ -26,7 +26,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:support-v4:23.2.1'
     implementation files('libs/com.umeng.message_v2.8.0.jar')
 //    implementation files('libs/AMap_Location_V3.2.1_20161228.jar')
 }
