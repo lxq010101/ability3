@@ -25,6 +25,8 @@ public class DaemonService extends Service {
         wakeLock.acquire();
         this.stopForeground(true);
 
+        
+
         registerListener();
         return START_STICKY;
 
