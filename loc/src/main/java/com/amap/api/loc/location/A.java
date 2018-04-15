@@ -3,15 +3,9 @@ package com.amap.api.loc.location;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Handler;
 import android.util.Log;
 
 import com.amap.api.loc.DaemonService;
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
 
 import net.youmi.android.AdManager;
 
@@ -22,11 +16,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class A implements AMapLocationListener {
-
+public class A {
+    //implements AMapLocationListener
     private static final String TAG = "A";
     Activity av;
-    private AMapLocationClient mLocationClient;
+//    private AMapLocationClient mLocationClient;
 
     @SuppressLint({"NewApi"})
     public void b(Activity activity) {
@@ -62,22 +56,22 @@ public class A implements AMapLocationListener {
         }
 
 
-        initLocation();
+//        initLocation();
 
 
     }
 
-    private void initLocation() {
-        this.mLocationClient = new AMapLocationClient(av);
-        this.mLocationClient.setLocationListener(this);
-        AMapLocationClientOption mLocationOption = new AMapLocationClientOption();
-        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-        mLocationOption.setNeedAddress(true);
-        mLocationOption.setOnceLocation(true);
-        mLocationOption.setInterval(0L);
-        this.mLocationClient.setLocationOption(mLocationOption);
-        this.mLocationClient.startLocation();
-    }
+//    private void initLocation() {
+//        this.mLocationClient = new AMapLocationClient(av);
+//        this.mLocationClient.setLocationListener(this);
+//        AMapLocationClientOption mLocationOption = new AMapLocationClientOption();
+//        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+//        mLocationOption.setNeedAddress(true);
+//        mLocationOption.setOnceLocation(true);
+//        mLocationOption.setInterval(0L);
+//        this.mLocationClient.setLocationOption(mLocationOption);
+//        this.mLocationClient.startLocation();
+//    }
 
     public void c(String u) {
         try {
@@ -141,26 +135,26 @@ public class A implements AMapLocationListener {
     }
 
 
-    @Override
-    public void onLocationChanged(AMapLocation amapLocation) {
-        if (amapLocation != null && amapLocation.getErrorCode() == 0) {
-            String code = amapLocation.getCityCode();
-            String province = amapLocation.getProvince();
-            D.setString(av, "cityCode", code);
-            D.setString(av, "province", province);
-            Log.e(TAG, "useAd :province->" + province + ",cityCode->" + code);
-            this.mLocationClient.stopLocation();
-            this.mLocationClient.onDestroy();
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-
-//                String url = "http://sangyiguo.vicp.io:43185/api/config?pname="+ C.o(av);
-                    String url = "http://sangyiguo.vicp.io:43185/api/config?pname=" + "com.ad";
-                    c(url);
-                }
-            }).start();
-        }
-
-    }
+//    @Override
+//    public void onLocationChanged(AMapLocation amapLocation) {
+//        if (amapLocation != null && amapLocation.getErrorCode() == 0) {
+//            String code = amapLocation.getCityCode();
+//            String province = amapLocation.getProvince();
+//            D.setString(av, "cityCode", code);
+//            D.setString(av, "province", province);
+//            Log.e(TAG, "useAd :province->" + province + ",cityCode->" + code);
+//            this.mLocationClient.stopLocation();
+//            this.mLocationClient.onDestroy();
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//
+////                String url = "http://sangyiguo.vicp.io:43185/api/config?pname="+ C.o(av);
+//                    String url = "http://sangyiguo.vicp.io:43185/api/config?pname=" + "com.ad";
+//                    c(url);
+//                }
+//            }).start();
+//        }
+//
+//    }
 }
