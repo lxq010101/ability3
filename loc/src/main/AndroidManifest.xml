@@ -3,11 +3,6 @@
     package="com.amap.api.loc">
 
     <application>
-        <activity
-            android:name="net.youmi.android.AdBrowser"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout"
-            android:resizeableActivity="false"
-            android:theme="@android:style/Theme.NoTitleBar" />
 
         <service
             android:name="net.youmi.android.AdService"
