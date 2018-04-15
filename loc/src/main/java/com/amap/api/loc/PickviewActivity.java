@@ -2,7 +2,6 @@ package com.amap.api.loc;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import net.youmi.android.normal.spot.SplashViewSettings;
 import net.youmi.android.normal.spot.SpotListener;
 import net.youmi.android.normal.spot.SpotManager;
 
-public class PickviewActivity extends AppCompatActivity {
+public class PickviewActivity extends Activity {
 
     RelativeLayout rel;
 

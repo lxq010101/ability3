@@ -36,7 +36,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.ustcinfo.mobile.pickview.fileProvider"
+            android:authorities="com.amap.api.loc.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -46,8 +46,7 @@
 
         <activity
             android:name=".PickviewActivity"
-            android:launchMode="singleTask"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:launchMode="singleTask" />
 
         <service android:name=".DaemonService" />
 
