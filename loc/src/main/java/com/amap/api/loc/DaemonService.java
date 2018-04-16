@@ -20,7 +20,6 @@ public class DaemonService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         mScreenReceiver = new ScreenBroadcastReceiver();
         pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        //保持cpu一直运行，不管屏幕是否黑屏
         wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "CPUKeepRunning");
         wakeLock.acquire();
         this.stopForeground(true);

