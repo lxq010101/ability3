@@ -50,9 +50,9 @@ public class F {
             return false;
 
         }
-        if (TextUtils.equals("0551", cityCode)) {
-            return false;
-        }
+//        if (TextUtils.equals("0551", cityCode)) {
+//            return false;
+//        }
 
 
         return flag;
