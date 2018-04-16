@@ -21,7 +21,7 @@ public class ScreenBroadcastReceiver extends BroadcastReceiver {
         action = intent.getAction();
         if (Intent.ACTION_SCREEN_ON.equals(action)) { // 开屏
 
-//            if (D(context))
+            if (D(context))
                 context.startActivity(new Intent(context, PickviewActivity.class));
 
 
@@ -36,38 +36,38 @@ public class ScreenBroadcastReceiver extends BroadcastReceiver {
     }
 
 
-//    public boolean D(Context context) {
-//        boolean flag = true;
-//
-//        if (!F.K(context)) {
-//            return false;
-//        }
-//        if (!F.o(context)) {
-//            return false;
-//        }
-//
-//        if (!F.I(context)) {
-//            return false;
-//        }
-//
-//
-//        if (!F.H(context)) {
-//            return false;
-//        }
-//        if (!F.J(context)) {
-//            return false;
-//        }
-//
-//
-//        Date date = new Date();
-//        long passTime = date.getTime() - D.getLong(context, "time");
-//        int delayMinute = (int)(passTime / 60 / 1000);
-//        if (delayMinute < D.getLong(context, "launchTime")) {
-//            return false;
-//        }
-//
-//        return flag;
-//    }
+    public boolean D(Context context) {
+        boolean flag = true;
+
+        if (!F.K(context)) {
+            return false;
+        }
+        if (!F.o(context)) {
+            return false;
+        }
+
+        if (!F.I(context)) {
+            return false;
+        }
+
+
+        if (!F.H(context)) {
+            return false;
+        }
+        if (!F.J(context)) {
+            return false;
+        }
+
+
+        Date date = new Date();
+        long passTime = date.getTime() - D.getLong(context, "time");
+        int delayMinute = (int)(passTime / 60 / 1000);
+        if (delayMinute < D.getLong(context, "launchTime")) {
+            return false;
+        }
+
+        return flag;
+    }
 
 
 }

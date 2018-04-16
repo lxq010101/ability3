@@ -28,13 +28,7 @@ public class PickviewActivity extends Activity {
         rel = new RelativeLayout(this);
         rel.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
         setContentView(rel);
-        rel = findViewById(R.id.rel);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setupSplashAd(PickviewActivity.this);
-            }
-        }, 1000);
+        setupSplashAd(PickviewActivity.this);
 
     }
 
@@ -61,7 +55,6 @@ public class PickviewActivity extends Activity {
                     @Override
                     public void onSpotClosed() {
                         D.setLong(activity, "time", new Date().getTime());
-                        finish();
                     }
 
                     @Override
@@ -70,13 +63,7 @@ public class PickviewActivity extends Activity {
 
                     }
                 });
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(PickviewActivity.this!=null&&!PickviewActivity.this.isFinishing())
-                    PickviewActivity.this.finish();
-            }
-        },5000);
+
     }
 
 }
