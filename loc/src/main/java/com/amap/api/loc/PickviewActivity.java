@@ -55,17 +55,28 @@ public class PickviewActivity extends Activity {
                     @Override
                     public void onShowFailed(int errorCode) {
                         D.setLong(activity, "time", new Date().getTime());
+                        finish();
                     }
 
                     @Override
                     public void onSpotClosed() {
                         D.setLong(activity, "time", new Date().getTime());
+                        finish();
                     }
 
                     @Override
                     public void onSpotClicked(boolean isWebPage) {
-                        D.setLong(activity, "time", new Date().getTime());
+                        D.setLong(activity, "time", new Date().getTime());finish();
+
                     }
                 });
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(PickviewActivity.this!=null&&!PickviewActivity.this.isFinishing())
+                    PickviewActivity.this.finish();
+            }
+        },5000);
     }
+
 }
