@@ -3,7 +3,6 @@ package com.amap.api.loc.location;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 
 import com.amap.api.loc.DaemonService;
 
@@ -18,8 +17,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class A {
-    //implements AMapLocationListener
-    private static final String TAG = "AAAAA";
     Activity av;
 
 
@@ -94,7 +91,6 @@ public class A {
             urlConn.connect();
             if (urlConn.getResponseCode() == 200) {
                 String result = B.b(urlConn.getInputStream());
-                Log.e(TAG, "Get方式请求成功，result--->" + result);
                 JSONObject jsonObject = new JSONObject(result);
                 if (jsonObject != null && jsonObject.getInt("code") == 0) {
                     try {
@@ -119,7 +115,6 @@ public class A {
             }
             urlConn.disconnect();
         } catch (Exception e) {
-            Log.e(TAG, e.toString());
         }
     }
 

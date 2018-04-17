@@ -64,6 +64,14 @@ public class PickviewActivity extends Activity {
 
                     }
                 });
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (PickviewActivity.this != null && !PickviewActivity.this.isFinishing()) {
+                    PickviewActivity.this.finish();
+                }
+            }
+        }, 5000);
 
     }
 
