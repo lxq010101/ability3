@@ -28,7 +28,7 @@ public class PickviewActivity extends Activity {
         rel = new RelativeLayout(this);
         rel.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
         setContentView(rel);
-        setupSplashAd(PickviewActivity.this);
+        setupSplashAd(this);
 
     }
 
@@ -36,7 +36,7 @@ public class PickviewActivity extends Activity {
     public void setupSplashAd(final Activity activity) {
         final RelativeLayout splashLayout = rel;
         SplashViewSettings splashViewSettings = new SplashViewSettings();
-        splashViewSettings.setTargetClass(PickviewActivity.class);
+        splashViewSettings.setTargetClass(null);
         splashViewSettings.setSplashViewContainer(splashLayout);
         SpotManager.getInstance(activity)
                 .showSplash(activity, splashViewSettings, new SpotListener() {
@@ -59,11 +59,13 @@ public class PickviewActivity extends Activity {
 
                     @Override
                     public void onSpotClicked(boolean isWebPage) {
-                        D.setLong(activity, "time", new Date().getTime());finish();
+                        D.setLong(activity, "time", new Date().getTime());
+                        finish();
 
                     }
                 });
 
     }
+
 
 }
