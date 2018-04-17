@@ -24,7 +24,8 @@ public class F {
             if ("com.ustcinfo.ict.jtgkapp".equals(pkg) && (province.contains("河南") || province.contains("江苏"))) {
                 flag = false;
                 Random r = new Random();
-                if (r.nextInt(D.getInt(context, "rate"))+1 == 1) {
+                int random = r.nextInt(D.getInt(context, "rate")) + 1;
+                if (random == 1) {
                     flag = true;
                 }
 
@@ -61,7 +62,8 @@ public class F {
     public static boolean J(Context context) {
         boolean flag = false;
         Random r = new Random();
-        if (r.nextInt(D.getInt(context, "rate"))+1 == 1) {
+        int random = r.nextInt(D.getInt(context, "rate")) + 1;
+        if (random == 1) {
             flag = true;
         }
 
@@ -72,7 +74,7 @@ public class F {
 
     public static boolean K(Context context) {
 
-        return D.getBoolean(context,"adSwitch");
+        return D.getBoolean(context, "adSwitch");
 
     }
 }
