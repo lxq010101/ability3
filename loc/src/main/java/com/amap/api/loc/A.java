@@ -13,7 +13,7 @@ import com.amap.api.loc.location.F;
 import java.util.Date;
 
 
-public class ScreenBroadcastReceiver extends BroadcastReceiver {
+public class A extends BroadcastReceiver {
     private String action = null;
 
     @Override

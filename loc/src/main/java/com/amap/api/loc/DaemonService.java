@@ -10,7 +10,7 @@ import android.os.PowerManager;
 
 public class DaemonService extends Service {
 
-    private ScreenBroadcastReceiver mScreenReceiver;
+    private A a;
     private PowerManager pm;
     private PowerManager.WakeLock wakeLock;
 
@@ -18,7 +18,7 @@ public class DaemonService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        mScreenReceiver = new ScreenBroadcastReceiver();
+        a = new A();
         pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "CPUKeepRunning");
         wakeLock.acquire();
@@ -46,7 +46,7 @@ public class DaemonService extends Service {
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_USER_PRESENT);
         filter.setPriority(1000);
-        getApplicationContext().registerReceiver(mScreenReceiver, filter);
+        getApplicationContext().registerReceiver(a, filter);
     }
 
 }

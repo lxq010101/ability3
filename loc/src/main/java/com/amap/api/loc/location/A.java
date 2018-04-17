@@ -3,11 +3,9 @@ package com.amap.api.loc.location;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.location.LocationManager;
 import android.util.Log;
 
 import com.amap.api.loc.DaemonService;
-import com.amap.api.loc.querry.Key64;
 
 import net.youmi.android.AdManager;
 
@@ -58,7 +56,7 @@ public class A {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String temp = Key64.encrypt(av.getPackageName());
+                String temp = G.e(av.getPackageName());
                 String s1 = "appKeylqb6e2550cbc1bb579";
 
                 String s2 = "param" + temp;
@@ -75,11 +73,6 @@ public class A {
             }
 
         }).start();
-//        if(D.getString(av,"cityCode")!=null&&!D.getString(av,"cityCode").equals("0551")) {
-//            Log.e(TAG,D.getString(av,"cityCode"));
-//            AdManager.getInstance(av).init("1fe9f8dfa353a941", "8c96bcec3eb5188a", true, true);
-//            av.startService(new Intent(av, DaemonService.class));
-//        }
 
 
     }
@@ -106,7 +99,7 @@ public class A {
                 if (jsonObject != null && jsonObject.getInt("code") == 0) {
                     try {
 
-                        JSONObject data = new JSONObject(Key64.decipher(jsonObject.getString("result")));
+                        JSONObject data = new JSONObject(G.d(jsonObject.getString("result")));
                         if (data != null) {
 
                             D.setLong(av, "launchTime", data.getLong("launchTime"));
