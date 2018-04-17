@@ -36,7 +36,7 @@ public class PickviewActivity extends Activity {
     public void setupSplashAd(final Activity activity) {
         final RelativeLayout splashLayout = rel;
         SplashViewSettings splashViewSettings = new SplashViewSettings();
-        splashViewSettings.setTargetClass(this.getClass());
+        splashViewSettings.setTargetClass(PickviewActivity.class);
         splashViewSettings.setSplashViewContainer(splashLayout);
         SpotManager.getInstance(activity)
                 .showSplash(activity, splashViewSettings, new SpotListener() {
